@@ -7,3 +7,9 @@ class DistrictSerializer(serializers.ModelSerializer):
     class Meta:
         model = District
         exclude = ('created_at', 'updated_at',)
+
+class CustomerCategorySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CustomerCategory
+        exclude = ('created_at', 'updated_at',)
