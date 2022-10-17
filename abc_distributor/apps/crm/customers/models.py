@@ -89,7 +89,7 @@ class Customer(models.Model):
         auto_now=True, verbose_name="Fecha de Moficación")
 
     def __str__(self):
-        return f"{self.ruc}"
+        return f"{self.name}"
 
     class Meta:
         db_table = "customer"
