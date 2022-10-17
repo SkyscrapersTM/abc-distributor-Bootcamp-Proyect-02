@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     # LOCAL_APPS 
     'apps.warehouse.products',
     'apps.crm.customers',
+    'apps.sales.currency',
     
     #THIRD_APPS
     'rest_framework',
