@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class UnitMeasureCategory(models.Model):
@@ -50,6 +51,7 @@ class UnitMeasureCategory(models.Model):
         # Texto que aparecerá en nuestra aplicación.
         verbose_name = "Categoría de Unidades de Medida"
 
+
 class UnitMeasure(models.Model):
     """
     Clase Unidad de Medida.
@@ -84,3 +86,32 @@ class UnitMeasure(models.Model):
         db_table = "unit_measure"
 
         verbose_name = "Unidades de Medida"
+
+
+class ProductCategory(models.Model):
+    """
+    Clase Categoría de Producto.
+    Ejem: Abarrotes
+    """
+
+    id = models.AutoField(primary_key=True)
+    code = models.CharField(max_length=3, unique=True, verbose_name="Código")
+    name = models.CharField(max_length=50, verbose_name="Nombre")
+    percent_discount = models.PositiveSmallIntegerField(default=0, validators=[
+                                                        MinValueValidator(0), MaxValueValidator(50)], verbose_name="Descuento (%)")
+    created_at = models.DateTimeField(
+        auto_now_add=True, verbose_name="Fecha de Creación")
+
+    updated_at = models.DateTimeField(
+        auto_now=True, verbose_name="Fecha de Moficación")
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        #self.percent_discount = 5
+        super(ProductCategory, self).save(*args, **kwargs)
+
+    class Meta:
+        db_table = "product_category"
+        verbose_name = "Categoría de Producto"
