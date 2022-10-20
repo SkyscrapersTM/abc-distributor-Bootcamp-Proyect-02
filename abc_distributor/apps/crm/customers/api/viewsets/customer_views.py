@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
-from apps.crm.customers.models import Customer
+from apps.crm.customers.models import Customer, CustomerCategory
 
 from apps.crm.customers.api.serializers.customer_serializer import CustomerSerializer
 
@@ -32,4 +32,26 @@ class CustomerViewSet(viewsets.ModelViewSet):
         serializer = CustomerSerializer(customer)
 
         # display customer data for the response
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # Create a custom viewset
+    @action(detail=False, methods=['get'], url_path='filter-by-type')
+    def filter_by_type(self, request, pk=None):
+        '''
+            This viewset filter customer by customer type paramater
+        '''
+
+        # get query parameter from the request
+        param_type = request.query_params.get('type')
+
+        # returns a single object that matches the given lookup parameter.
+        type_customer = CustomerCategory.objects.get(name=param_type)
+
+        # returns customer objects that matches type_customer.
+        customers = Customer.objects.filter(category_id=type_customer)
+
+        # allow customer objects to become JSON
+        serializer = CustomerSerializer(customers, many=True)
+
+        # display customers data for the response
         return Response(serializer.data, status=status.HTTP_200_OK)
