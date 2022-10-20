@@ -119,6 +119,7 @@ class ProductCategory(models.Model):
         db_table = "product_category"
         verbose_name = "Categoría de Producto"
 
+
 class Product(models.Model):
 
     id = models.AutoField(primary_key=True)
@@ -156,11 +157,11 @@ class Product(models.Model):
                                                         MinValueValidator(0), MaxValueValidator(60)], verbose_name="Descuento (%)")
 
     discount_amount = models.DecimalField(
-        max_digits=7, decimal_places=2, default=0, verbose_name="Monto Descuento")
+        max_digits=7, decimal_places=2, default=0, verbose_name="Monto Descuento", blank=True, null=True)
 
     # precio de venta
     sale_price = models.DecimalField(
-        max_digits=7, decimal_places=2, default=0, verbose_name="Precio de Venta")
+        max_digits=7, decimal_places=2, default=0, verbose_name="Precio de Venta", blank=True, null=True)
 
     # stock: PositiveIntegerField
     #stock = models.PositiveIntegerField(default=0, verbose_name="Stock")
@@ -177,18 +178,31 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def calc_discount_amount(self):
+        '''
+            Compare category discount and product discount,
+            then apply the base sale price with the highest discount
+        '''
+
+        if self.product_category_id.percent_discount > self.percent_discount:
+            self.discount_amount = round(
+                (int(self.product_category_id.percent_discount)/100)*float(self.base_sale_price), 2)
+
+        else:
+            self.discount_amount = round(
+                (int(self.percent_discount)/100)*float(self.base_sale_price), 2)
+
     def save(self, *args, **kwargs):
         """
         Sobre escribimos el método save de la clase Model.
         """
         # Calculamos el monto de descuento
-        self.discount_amount = round(
-            (int(self.percent_discount)/100)*float(self.base_sale_price), 2)
-        
+        self.calc_discount_amount()
+
         # Calculamos el precio de venta
         self.sale_price = float(self.base_sale_price) - \
             float(abs(self.discount_amount))
-        
+
         # Guardamos información del modelo
         super(Product, self).save(*args, **kwargs)
 
