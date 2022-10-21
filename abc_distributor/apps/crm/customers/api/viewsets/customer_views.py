@@ -12,8 +12,8 @@ class CustomerViewSet(viewsets.ModelViewSet):
     """
         A viewset that provides the standard actions
     """
-    queryset = CustomerSerializer.Meta.model.objects.all()
     serializer_class = CustomerSerializer
+    queryset = CustomerSerializer.Meta.model.objects.all()
 
     # Create a custom viewset
     @action(detail=False, methods=['get'], url_path='filter-by-ruc')
