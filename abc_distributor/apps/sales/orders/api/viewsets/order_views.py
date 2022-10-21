@@ -2,20 +2,21 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import action
+from rest_framework.permissions import IsAuthenticated
 
 from apps.sales.orders.models import Order
 from apps.warehouse.products.models import Product
 from apps.crm.customers.models import Customer
 from apps.sales.orders.models import DetailOrder
 
-from apps.sales.orders.api.serializers.general_serializer import DetailOrderSerializer
-from apps.sales.orders.api.serializers.order_serializer import OrderSerializer
+from apps.sales.orders.api.serializers.order_serializer import OrderSerializer, OrderDetailSerializer
 
 
 class OrderViewSet(viewsets.ModelViewSet):
 
     serializer_class = OrderSerializer
     queryset = OrderSerializer.Meta.model.objects.all()
+    #permission_classes = (IsAuthenticated,)
 
     @action(detail=False, methods=['get'], url_path='order-by-code')
     def order_by_id(self, request, pk=None):
@@ -82,8 +83,6 @@ class OrderViewSet(viewsets.ModelViewSet):
 
         earnings = (order.sub_total - order.total_purchase_price)
 
-        serializer = OrderSerializer(order)
-
         return Response({
             "numero_pedido": order.code,
             "venta_neta": order.sub_total,
@@ -146,3 +145,9 @@ class OrderViewSet(viewsets.ModelViewSet):
         serializer = OrderSerializer(new_order)
 
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = OrderDetailSerializer(instance=instance)
+        return Response(serializer.data)
