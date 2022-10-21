@@ -163,8 +163,8 @@ class Product(models.Model):
     sale_price = models.DecimalField(
         max_digits=7, decimal_places=2, default=0, verbose_name="Precio de Venta", blank=True, null=True)
 
-    # stock: PositiveIntegerField
-    #stock = models.PositiveIntegerField(default=0, verbose_name="Stock")
+    # stock de productos
+    stock = models.PositiveIntegerField(default=0, verbose_name="Stock")
 
     # Activo: BooleanField
     active = models.BooleanField(default=True, verbose_name="Activo")
