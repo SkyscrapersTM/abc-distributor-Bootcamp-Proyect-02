@@ -5,7 +5,7 @@ from rest_framework.serializers import ModelSerializer
 
 class ProductCategorySerializer(ModelSerializer):
     """
-        Clase para convertir un objeto ProductCategory a un formato JSON.
+       Class to convert a Product Category object to a JSON format.
     """
     class Meta:
         model = ProductCategory

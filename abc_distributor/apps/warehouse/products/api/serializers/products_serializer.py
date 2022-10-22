@@ -3,7 +3,7 @@ from apps.warehouse.products.models import Product
 
 class ProductSerializer(ModelSerializer):
     """
-    Clase para convertir un objeto Product a un formato JSON.
+        Class to convert a Product object to a JSON format.
     """
     class Meta:
         model = Product

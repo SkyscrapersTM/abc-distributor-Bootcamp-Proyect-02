@@ -3,14 +3,19 @@ from rest_framework.serializers import ModelSerializer
 from apps.sales.orders.models import Order
 
 class OrderSerializer(ModelSerializer):
-
+    '''
+        Class to convert a Order object to a JSON format.
+    '''
     class Meta:
 
         model = Order
         fields = '__all__'
 
     def to_representation(self, instance):
-
+        '''
+            override method to_representation()
+            indicates fields to display converted into json without affecting the database
+        '''
         return {
             'id_pedido': instance.id,
             'numero_de_pedido': instance.code,
@@ -25,15 +30,22 @@ class OrderSerializer(ModelSerializer):
 
 
 class OrderDetailSerializer(ModelSerializer):
-
+    '''
+        This class is used for order detail
+        Class to convert a Order object to a JSON format (OrderDetailSerializer ).
+    '''
     class Meta:
 
         model = Order
         fields = '__all__'
 
     def to_representation(self, instance):
+        '''
+            override method to_representation()
+            indicates fields to display converted into json without affecting the database
+        '''
         data_detail = []
-
+        # store the order details in a list(dict)
         for detail in instance.detail_id.all():
             data_detail.append({
                 "id": detail.id,
@@ -45,6 +57,7 @@ class OrderDetailSerializer(ModelSerializer):
                 
             })
 
+        # stores customer data in a dict
         data_customer = {
             "razon_Social": instance.customer_id.name,
             "ruc": instance.customer_id.ruc,
