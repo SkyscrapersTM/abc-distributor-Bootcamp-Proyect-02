@@ -64,7 +64,7 @@ $ source venv/Scripts/Activate (linux)
 # Install dependencies
 $ pip install -r requirements.txt
 # Create database in mysql
-$ create database dbstore;
+$ create database dbabc;
 # Go my.cnf file and set your user and password
 $ user = ...
 $ password = ...
@@ -72,6 +72,8 @@ $ password = ...
 $ py manage.py makemigrations
 # Execute the changes detected in the models.
 $ py manage.py migrate
+# Create user admin
+$ py manage.py createsuperuser
 ```
 
 ## :memo: License ##
