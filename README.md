@@ -65,6 +65,9 @@ $ source venv/Scripts/Activate (linux)
 $ pip install -r requirements.txt
 # Create database in mysql
 $ create database dbstore;
+# Go my.cnf file and set your user and password
+$ user = ...
+$ password = ...
 # Create migration files
 $ py manage.py makemigrations
 # Execute the changes detected in the models.
