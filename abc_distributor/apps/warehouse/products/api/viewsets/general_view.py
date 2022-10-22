@@ -5,9 +5,12 @@ from apps.warehouse.products.api.serializers.general_serializer import ProductCa
 
 
 class ProductCategoryViewSet(viewsets.ModelViewSet):
-
+    """
+        A viewset that provides the standard actions
+    """
     serializer_class = ProductCategorySerializer
 
-    permission_classes = (IsAuthenticated,)
-
     queryset = ProductCategorySerializer.Meta.model.objects.all()
+
+    # indicates Json Web token(JWT)
+    #permission_classes = (IsAuthenticated,)

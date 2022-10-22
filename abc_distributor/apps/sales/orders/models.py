@@ -7,7 +7,7 @@ from apps.warehouse.products.models import Product
 
 class DetailOrder(models.Model):
     '''
-        Clase Detalle de Orden
+        Order Detail Class
     '''
     # contains the selected quantity of a single product
     quantity = models.PositiveSmallIntegerField()
@@ -23,7 +23,7 @@ class DetailOrder(models.Model):
     # contains the total of the selected product without discount
     total_without_discount = models.DecimalField(
         max_digits=7, decimal_places=2, default=0, verbose_name="Total del Detalle sin Descuento", blank=True, null=True)
-    
+
     # total purchase price
     total_purchase_price = models.DecimalField(
         max_digits=7, decimal_places=2, default=0, verbose_name="Sub Total", blank=True, null=True)
@@ -49,17 +49,22 @@ class DetailOrder(models.Model):
 
     def save(self, *args, **kwargs):
         """
-            Sobre escribimos el método save de la clase Order.
+            Overriding the save method of the Model class.
         """
 
         self.set_total_purchase_price()
         self.set_total()
         self.set_total_without_discount()
 
+        # calls the same save method already overwritten
+        # https://www.geeksforgeeks.org/overriding-the-save-method-django-models/
         super(DetailOrder, self).save(*args, **kwargs)
 
     def __str__(self):
-
+        '''
+            Special method that convert Python objects into strings
+            by using __str__
+        '''
         return str(self.total)
 
     class Meta:
@@ -70,7 +75,7 @@ class DetailOrder(models.Model):
 
 class Order(models.Model):
     '''
-        Clase Pedido
+        Order Class
         For instance:
             'Pedido' : {
                 'code': '202200001',
@@ -99,6 +104,7 @@ class Order(models.Model):
                                     default=None, db_column="customer", verbose_name="Cliente", blank=True, null=True)
 
     # ManyToMany Relationship: Detail Order
+    # contains order details
     detail_id = models.ManyToManyField(DetailOrder)
 
     # total purchase price
@@ -175,7 +181,10 @@ class Order(models.Model):
         self.discount_amount = sub_total_without_discount - self.sub_total
 
     def __str__(self):
-
+        '''
+            Special method that convert Python objects into strings
+            by using __str__
+        '''
         return str(self.total)
 
     class Meta:

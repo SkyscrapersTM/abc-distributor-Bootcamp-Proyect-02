@@ -4,17 +4,20 @@ from rest_framework import serializers
 
 
 class CustomerSerializer(serializers.ModelSerializer):
-
-    # busca método validate_<<name>>()
-    # válida que el campo ingresado este en formato ruc
+    '''
+        Class to convert a Customer object to a JSON format.
+    '''
+    # search method validate_<<name>>()
+    # https://www.django-rest-framework.org/api-guide/serializers/#field-level-validation
+    # valid that the entered field is in ruc format
     def validate_ruc(self, value):
         if len(value) != 11:
             raise serializers.ValidationError(
                 "Debe ingresar un ruc válido.")
         return value
 
-    # sobreescribe método to_representation()
-    # indica campos a mostrar en json sin afectar la base de datos
+    # override method to_representation()
+    # indicates fields to display converted into json without affecting the database
     def to_representation(self, instance):
         return {
             'id': instance.id,

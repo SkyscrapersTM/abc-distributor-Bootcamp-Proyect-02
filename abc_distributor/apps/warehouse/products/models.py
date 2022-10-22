@@ -124,8 +124,13 @@ class Product(models.Model):
 
     id = models.AutoField(primary_key=True)
 
+    # Atributo "code" => columna "code" de la tabla
+    # Con el parámetro unique=True, le indicamos a Django que agregue un indice
+    # tipo UNIQUE a la columna "code".
+    # Código de distrito
     code = models.CharField(max_length=6, unique=True, verbose_name="Código")
 
+    # indicate the name of the product
     name = models.CharField(max_length=60, blank=False,
                             default=None, verbose_name="Nombre")
 
@@ -133,10 +138,12 @@ class Product(models.Model):
     # image = models.ImageField('Imagen del Producto', upload_to='products/', blank=True, null=True)
 
     # foreign_key: categoría de producto
+    # indicate in which category the product is located
     product_category_id = models.ForeignKey(ProductCategory, on_delete=models.CASCADE,
                                             default=None, db_column="product_category_id", verbose_name="Categoría Producto")
 
     # foreign_key: unidad de medida
+    # indicates the unit of measure of the product
     unit_measure_id = models.ForeignKey(UnitMeasure, on_delete=models.CASCADE,
                                         default=None, db_column="unit_measure_id", verbose_name="Unidad de Medida")
 
@@ -144,38 +151,46 @@ class Product(models.Model):
     currency_id = models.ForeignKey(
         Currency, on_delete=models.CASCADE, default=None, db_column="currency_id", verbose_name="Moneda")
 
-    # precio de compra.
+    # indicates the purchase price of the product.
     purchase_price = models.DecimalField(
         max_digits=7, decimal_places=2, default=0, verbose_name="Precio de Compra")
 
-    # precio de venta base
+    # indicates the base selling price of the product
     base_sale_price = models.DecimalField(
         max_digits=7, decimal_places=2, default=0, verbose_name="Precio de Venta Base")
 
+    # indicates the product discount (%)
     # require: from django.core.validators
     percent_discount = models.PositiveSmallIntegerField(default=0, validators=[
                                                         MinValueValidator(0), MaxValueValidator(60)], verbose_name="Descuento (%)")
 
+    # indicates the discount amount of the product
     discount_amount = models.DecimalField(
         max_digits=7, decimal_places=2, default=0, verbose_name="Monto Descuento", blank=True, null=True)
 
-    # precio de venta
+    # indicates the selling price of the product
     sale_price = models.DecimalField(
         max_digits=7, decimal_places=2, default=0, verbose_name="Precio de Venta", blank=True, null=True)
 
-    # stock de productos
+    # indicates the quantity of the product available
     stock = models.PositiveIntegerField(default=0, verbose_name="Stock")
 
-    # Activo: BooleanField
+    # activo: BooleanField
     active = models.BooleanField(default=True, verbose_name="Activo")
 
+    # product registration date
     created_at = models.DateTimeField(
         auto_now_add=True, verbose_name="Fecha Creación")
 
+    # product modification date
     updated_at = models.DateTimeField(
         auto_now=True, verbose_name="Fecha Modificación")
 
     def __str__(self):
+        '''
+            Special method that convert Python objects into strings
+            by using __str__
+        '''
         return self.name
 
     def calc_discount_amount(self):
@@ -194,16 +209,17 @@ class Product(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Sobre escribimos el método save de la clase Model.
+            Overriding the save method of the Model class.
         """
-        # Calculamos el monto de descuento
+        # calculate discount amount
         self.calc_discount_amount()
 
-        # Calculamos el precio de venta
+        # calculate the sale price
         self.sale_price = float(self.base_sale_price) - \
             float(abs(self.discount_amount))
 
-        # Guardamos información del modelo
+        # calls the same save method already overwritten
+        # https://www.geeksforgeeks.org/overriding-the-save-method-django-models/
         super(Product, self).save(*args, **kwargs)
 
     class Meta:
