@@ -72,9 +72,14 @@ $ password = ...
 $ py manage.py makemigrations
 # Execute the changes detected in the models.
 $ py manage.py migrate
+# use scripts file.
+$ scripts.txt
+# import BootCamp-II.postman_collection.json to POSTMAN.
+$ BootCamp-II.postman_collection.json
 # Create user admin
 $ py manage.py createsuperuser
 ```
+
 
 ## :memo: License ##
 
@@ -83,7 +88,6 @@ This project is under license from MIT. For more details, see the [LICENSE](LICE
 ## Authors ##
 Made with :heart: by 
 <h3 aling="center">
-  <!-- <a href="https://github.com/koinu1203" target="_blank">Daniel Ortiz</a> -->
   <!-- <span> & </span> -->
   <a href="https://github.com/SkyscrapersTM" target="_blank"> Saul Sanchez</a>
 </h3>
