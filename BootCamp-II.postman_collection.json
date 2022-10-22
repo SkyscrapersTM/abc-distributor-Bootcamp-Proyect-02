@@ -1,0 +1,794 @@
+{
+	"info": {
+		"_postman_id": "0af9a103-b731-4f36-80fc-4bd3f01e388b",
+		"name": "BootCamp-II",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13393887"
+	},
+	"item": [
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "Crud",
+					"item": [
+						{
+							"name": "orders",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-sales/orders/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-sales",
+										"orders",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post-order",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"200000002\",\r\n    \"delivery_at\": \"2022-10-22T18:14:43.080273-05:00\",\r\n    \"customer_id\": {\r\n        \"ruc\": \"20312346845\"\r\n    },\r\n    \"detail_id\": [\r\n        {\r\n            \"quantity\": 2,\r\n            \"product_id\": {\r\n                \"name\": \"GASEOSA INCA KOLA BOTELLA 1L\"\r\n            }\r\n        },\r\n        {\r\n            \"quantity\": 4,\r\n            \"product_id\": {\r\n                \"name\": \"AZÚCAR RUBIA BOLSA 10KG\"\r\n            }\r\n        },\r\n        {\r\n            \"quantity\": 5,\r\n            \"product_id\": {\r\n                \"name\": \"ARROZ RENDIDOR BOLSA 10KG\"\r\n            }\r\n        },\r\n        {\r\n            \"quantity\": 7,\r\n            \"product_id\": {\r\n                \"name\": \"PALTA FUERTE CAJA 5KG\"\r\n            }\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-sales/orders/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-sales",
+										"orders",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "This folder contains basic crud orders"
+				},
+				{
+					"name": "filters",
+					"item": [
+						{
+							"name": "order-by-date",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-sales/orders/order-by-date/?date=2022-10-21T11:30:18.743025-05:00",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-sales",
+										"orders",
+										"order-by-date",
+										""
+									],
+									"query": [
+										{
+											"key": "date",
+											"value": "2022-10-21T11:30:18.743025-05:00"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "order-by-code",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-sales/orders/order-by-code/?code=200000012",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-sales",
+										"orders",
+										"order-by-code",
+										""
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "200000012"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "order-by-total",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-sales/orders/order-by-total/?totalAmountHigherThan=201.70",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-sales",
+										"orders",
+										"order-by-total",
+										""
+									],
+									"query": [
+										{
+											"key": "totalAmountHigherThan",
+											"value": "201.70"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "order-by-delivery-date",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-sales/orders/order-by-delivery-date/?date=2022-10-22T18:14:43.080273-05:00",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-sales",
+										"orders",
+										"order-by-delivery-date",
+										""
+									],
+									"query": [
+										{
+											"key": "date",
+											"value": "2022-10-22T18:14:43.080273-05:00"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "order-by-earning",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-sales/orders/order-by-total-earnings/?code=200000012",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-sales",
+										"orders",
+										"order-by-total-earnings",
+										""
+									],
+									"query": [
+										{
+											"key": "code",
+											"value": "200000012"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "order-by-id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-sales/orders/70",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-sales",
+										"orders",
+										"70"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Warehouse",
+			"item": [
+				{
+					"name": "Crud",
+					"item": [
+						{
+							"name": "products",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-warehouse/product/2022-10-22T18:14:43.080273-05:00",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-warehouse",
+										"product",
+										"2022-10-22T18:14:43.080273-05:00"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post-product",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"101\",\r\n    \"name\": \"Caja de botella Cielo\",\r\n    \"purchase_price\": \"40.00\",\r\n    \"base_sale_price\": \"50.00\",\r\n    \"percent_discount\": 3,\r\n    \"stock\": 40,\r\n    \"active\": true,\r\n    \"product_category_id\": 5,\r\n    \"unit_measure_id\": 2,\r\n    \"currency_id\": 1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-warehouse/product/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-warehouse",
+										"product",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Customers",
+			"item": [
+				{
+					"name": "Crud",
+					"item": [
+						{
+							"name": "post-customer",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ruc\": \"20312346845\",\r\n    \"name\": \"Franchescas\",\r\n    \"district_id\": 3,\r\n    \"category_id\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-crm/customers/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-crm",
+										"customers",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "customers",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-crm/customers/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-crm",
+										"customers",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "put-customer",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"ruc\": \"20312346845\",\r\n    \"name\": \"Franchescas SAC\",\r\n    \"district_id\": 3,\r\n    \"category_id\": 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-crm/customers/6/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-crm",
+										"customers",
+										"6",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete-customer",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-crm/customers/6/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-crm",
+										"customers",
+										"6",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Filters",
+					"item": [
+						{
+							"name": "cusomter-by-ruc",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-crm/customers/filter-by-ruc/?ruc=20312346842",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-crm",
+										"customers",
+										"filter-by-ruc",
+										""
+									],
+									"query": [
+										{
+											"key": "ruc",
+											"value": "20312346842"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "customer-by-type",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-crm/customers/filter-by-type/?type=Hotel",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-crm",
+										"customers",
+										"filter-by-type",
+										""
+									],
+									"query": [
+										{
+											"key": "type",
+											"value": "Hotel"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Districts",
+					"item": [
+						{
+							"name": "districts",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-crm/districts/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-crm",
+										"districts",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post-district",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"102\",\r\n    \"name\": \"San Isidro\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-crm/districts/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-crm",
+										"districts",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "categories",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-crm/customer-category/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-crm",
+										"customer-category",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post-category",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"code\": \"103\",\r\n    \"name\": \"Tienda\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api-crm/customer-category/",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api-crm",
+										"customer-category",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "tokens",
+			"item": [
+				{
+					"name": "token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "peep",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/token/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"token",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "post-product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"100\",\r\n    \"name\": \"GASEOSA INCA KOLA BOTELLA 1\",\r\n    \"purchase_price\": 2.85,\r\n    \"base_sale_price\": 4.70,\r\n    \"percent_discount\": 5,\r\n    \"stock\": 50,\r\n    \"active\": 1,\r\n    \"product_category_id\": 1,\r\n    \"unit_measure_id\": 9,\r\n    \"currency_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api-warehouse/product/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api-warehouse",
+								"product",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api-warehouse/product/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api-warehouse",
+								"product",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put-product",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"code\": \"100001\",\r\n    \"name\": \"GASEOSA INCA KOLA BOTELLA 1\",\r\n    \"purchase_price\": \"2.85\",\r\n    \"base_sale_price\": \"4.70\",\r\n    \"percent_discount\": 5,\r\n    \"discount_amount\": \"0.24\",\r\n    \"sale_price\": \"4.46\",\r\n    \"stock\": 70,\r\n    \"active\": true,\r\n    \"product_category_id\": 1,\r\n    \"unit_measure_id\": 9,\r\n    \"currency_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api-warehouse/product/1/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api-warehouse",
+								"product",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-product",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
